@@ -10,5 +10,20 @@
     height: 70px;
     background-color: red;
     position: absolute;
-    left: 50px; bottom: 120px;
+    bottom: 120px ;
+    left: 120px;
+}
+.lines{
+    width: 10px;
+    height: 100px;
+    background-color: white;
+    position: absolute;
+    margin-left: 195px;
+}
+.gameArea{
+    width: 400px;
+    height: 100vh;
+    background-color: #1e272e;
+    margin: auto;
+    position: relative;
 }
