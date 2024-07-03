@@ -4,7 +4,8 @@ This is a simple racing car game developed using HTML, CSS, and JavaScript. The 
 
 ## Demo
 
-![Racing Car Game]![image](https://github.com/itssiddhant/JavaScript-Projects/assets/133964959/debcede8-b2fa-45a6-a45a-b412469cb965)
+Screenshot of the Game
+![Game](https://github.com/itssiddhant/JavaScript-Projects/assets/133964959/debcede8-b2fa-45a6-a45a-b412469cb965)
 
 
 You can play the game by cloning the repo.
