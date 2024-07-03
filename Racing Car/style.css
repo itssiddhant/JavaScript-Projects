@@ -1,17 +1,30 @@
 *{
     padding: 0;
     margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .hide{
     display: none;
 }
+.carGame{
+    width: 100%;
+    height: 100vh;
+    background-image: url("assets\\1876.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 .car,.enemy{
     width: 50px;
-    height: 70px;
-    background-color: red;
+    height: 80px;
     position: absolute;
+    background-image: url('assets\\car.png');
+    background-repeat: no-repeat;
+    background-size:100% 100%;
     bottom: 120px ;
     left: 120px;
+}
+.enemy{
+    background-image: url('assets\\enemy.png');
 }
 .lines{
     width: 10px;
@@ -26,4 +39,40 @@
     background-color: #1e272e;
     margin: auto;
     position: relative;
+    border-left: 7px dashed cyan;
+    border-right: 7px dashed cyan;
+}
+.score{
+    position: absolute;
+    top: 10%;
+    left: 3%;
+    z-index: 1;
+    background-color: coral;
+    width: 20%;
+    line-height: 70px;
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+    
+    box-shadow: 0 5px 5px #777;
+}
+.startScreen{
+    position: absolute;
+    background-color: orange;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    z-index : 1;
+    text-align: center;
+    border: 1px solid #ff6b6b;
+    padding: 15px;
+    margin: auto;
+    width: 30%;
+    cursor: pointer;
+    letter-spacing: 5;
+    font-size: 20px;
+    word-spacing: 3;
+    line-height: 30px;
+    box-shadow: 0 5px 5px #777;
 }

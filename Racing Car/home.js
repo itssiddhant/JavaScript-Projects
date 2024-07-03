@@ -4,7 +4,7 @@ const gameArea = document.querySelector('.gameArea');
 
 startScreen.addEventListener('click', start);
 
-let player = {speed :5};
+let player = {speed :5,score:0};
 let keys = { ArrowUp: false, w :false, s: false, a: false, d: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false };
 
 document.addEventListener('keydown', keyDown);
@@ -39,12 +39,17 @@ function moveLines(){
 
     })
 }
+function endGame(){
+    player.start = false;
+    startScreen.classList.remove('hide');
+    
+}
 function moveEnemy(car){
     let eCars = document.querySelectorAll('.enemy');
 
     eCars.forEach(function(value){
         if(collision(car,value)){
-            console.log('Crashed');
+            endGame();
         };
         if(value.y >=655){
             value.y =-300;
@@ -65,7 +70,7 @@ function playGame() {
         if((keys.ArrowUp || keys.w)&&(player.y>road.top+100)){
             player.y -=player.speed;
         }
-        if((keys.ArrowDown || keys.s)&&(player.y<road.bottom-80)){
+        if((keys.ArrowDown || keys.s)&&(player.y<road.bottom-90)){
             player.y +=player.speed;
         }
         if((keys.ArrowLeft || keys.a)&&(player.x>10)){
@@ -80,13 +85,20 @@ function playGame() {
 
 
         window.requestAnimationFrame(playGame);
+
+        player.score++;
+        score.innerText = "Score: "+player.score;
+        startScreen.innerHTML = "Game Over :( <br> Your Final Score is "+ player.score + "<br>Click Here to Play Again!"
     }
 }
 function start() {
-    gameArea.classList.remove('hide');
+
     startScreen.classList.add('hide');
+    score.classList.remove('hide');
+    gameArea.innerHTML ="";
     
     player.start = true;
+    player.score = 0;
     window.requestAnimationFrame(playGame);
 
     for(x=0; x<5;x++){
@@ -105,12 +117,12 @@ function start() {
     player.x = car.offsetLeft;
     player.y = car.offsetTop;
 
-    for(x=0; x<7;x++){
+    for(x=0; x<4;x++){
         let enemyCar = document.createElement('div');
         enemyCar.setAttribute('class','enemy');
         enemyCar.y = ((x+1)*350)*-1;
         enemyCar.style.top = enemyCar.y +"px";
-        enemyCar.style.backgroundColor = 'green';
+        enemyCar.style.backgroundColor = 'transparent';
         enemyCar.style.left = Math.floor(Math.random()*350) + "px";
         gameArea.appendChild(enemyCar);
     }
