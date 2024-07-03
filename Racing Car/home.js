@@ -20,11 +20,48 @@ function keyUp(e) {
     e.preventDefault();
     keys[e.key] = false;
 }
+function collision(a,b){
+    aRect = a.getBoundingClientRect();
+    bRect = b.getBoundingClientRect();
+    
+    return !((aRect.top>bRect.bottom) ||(aRect.bottom<bRect.top) || (aRect.right<bRect.left) || (aRect.left>bRect.right)) ;
+}
+function moveLines(){
+    let lines = document.querySelectorAll('.lines');
+
+    lines.forEach(function(value){
+
+        if(value.y >=635){
+            value.y -=740;
+        }
+        value.y += player.speed;
+        value.style.top = value.y + "px";
+
+    })
+}
+function moveEnemy(car){
+    let eCars = document.querySelectorAll('.enemy');
+
+    eCars.forEach(function(value){
+        if(collision(car,value)){
+            console.log('Crashed');
+        };
+        if(value.y >=655){
+            value.y =-300;
+            value.style.left = Math.floor(Math.random()*350) + "px";
+        }
+        value.y += player.speed;
+        value.style.top = value.y + "px";
+
+    })
+}
 function playGame() {
     let car = document.querySelector('.car');
     let road = gameArea.getBoundingClientRect();
-    console.log(road);
+    // console.log(road);
     if (player.start) {
+        moveLines();
+        moveEnemy(car);
         if((keys.ArrowUp || keys.w)&&(player.y>road.top+100)){
             player.y -=player.speed;
         }
@@ -55,7 +92,8 @@ function start() {
     for(x=0; x<5;x++){
         let roadLine = document.createElement('div');
         roadLine.setAttribute('class','lines');
-        roadLine.style.top = (x*150)+"px";
+        roadLine.y = (x*150);
+        roadLine.style.top = roadLine.y +"px";
         gameArea.appendChild(roadLine);
     }
 
@@ -66,4 +104,14 @@ function start() {
 
     player.x = car.offsetLeft;
     player.y = car.offsetTop;
+
+    for(x=0; x<7;x++){
+        let enemyCar = document.createElement('div');
+        enemyCar.setAttribute('class','enemy');
+        enemyCar.y = ((x+1)*350)*-1;
+        enemyCar.style.top = enemyCar.y +"px";
+        enemyCar.style.backgroundColor = 'green';
+        enemyCar.style.left = Math.floor(Math.random()*350) + "px";
+        gameArea.appendChild(enemyCar);
+    }
 }
